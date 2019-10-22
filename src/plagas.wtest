@@ -1,0 +1,36 @@
+import elementos.*
+import plagas.*
+
+describe "elementos, plagas y ataques" {
+	test "elementos " {
+		var casa1 = new Hogar(nivelDeMugre = 50, confort = 140)
+		var jardin1 = new Huerta(capacidadDeProduccion = 200, nivelBase = 100)
+		var perro1 = new Mascota(nivelDeSalud = 300)
+		assert.that(casa1.esBueno())
+		assert.that(jardin1.esBueno())
+		assert.that(perro1.esBueno())
+	}
+	
+	test "plagas" {
+		var cucarachas = new PlagaCucarachas(poblacion = 80, pesoPromedio = 7)
+		var garrapatas = new PlagaDeGarrapatas(poblacion = 5)
+		var pulgas = new PlagaPulgas(poblacion = 120)
+		var nubeDeMosquitos = new PlagaMosquitos(poblacion = 300)
+		assert.notThat(cucarachas.transmiteEnfermedades())
+		assert.equals(cucarachas.nivelDeDanio(), 40)
+		assert.notThat(garrapatas.transmiteEnfermedades())
+		assert.equals(garrapatas.nivelDeDanio(), 10)
+		assert.that(pulgas.transmiteEnfermedades())
+		assert.that(nubeDeMosquitos.transmiteEnfermedades())
+	}
+	test "ataques" {
+		var casa1 = new Hogar(nivelDeMugre = 50, confort = 140)
+		var jardin1 = new Huerta(capacidadDeProduccion = 200, nivelBase = 100)
+		var perro1 = new Mascota(nivelDeSalud = 300)
+		var cucarachas = new PlagaCucarachas(poblacion = 80, pesoPromedio = 7)
+		var garrapatas = new PlagaDeGarrapatas(poblacion = 5)
+		var pulgas = new PlagaPulgas(poblacion = 120)
+		var nubeDeMosquitos = new PlagaMosquitos(poblacion = 300)
+		cucarachas.atacarElemento(casa1)
+	}
+}
